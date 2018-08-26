@@ -9,6 +9,6 @@ public interface TaskService {
    long save(Task task);
    Task get(long id);
    List<Task> list();
-   void update(long id, Task task);
+   void update(long id, String imageRaw, Task task);
    void delete(long id);
 }

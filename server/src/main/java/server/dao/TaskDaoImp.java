@@ -1,6 +1,8 @@
 package server.dao;
 
 import java.util.List;
+import java.util.Base64;
+import java.io.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -43,10 +45,21 @@ public class TaskDaoImp implements TaskDao {
    }
 
    @Override
-   public void update(long id, Task task) {
+   public void update(long id, String imageRaw, Task task) {
       Session session = sessionFactory.getCurrentSession();
       Task task2 = session.byId(Task.class).load(id);
       task2.setStatus(task.getStatus());
+      task2.setDescription(task.getDescription());
+      System.err.println(task2.getStatus());
+      byte[] data = Base64.getEncoder().encode(imageRaw.getBytes());
+      String url = "src/images/completeImage" + id + ".png";
+      try (OutputStream stream = new FileOutputStream(url)) {
+          stream.write(data);
+          stream.close();
+          task2.setUrl(url);
+      } catch (IOException e) {
+          System.err.println("Caught IOException: " + e.getMessage());
+      }
       session.flush();
    }
 

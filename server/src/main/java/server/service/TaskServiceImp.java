@@ -2,6 +2,7 @@ package server.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,8 +35,8 @@ public class TaskServiceImp implements TaskService {
 
    @Transactional
    @Override
-   public void update(long id, Task task) {
-      taskDao.update(id, task);
+   public void update(long id, String imageRaw, Task task) {
+       taskDao.update(id, imageRaw, task);
    }
 
    @Transactional
