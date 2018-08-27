@@ -40,11 +40,11 @@ public class Task {
    }
 
    public String getUrl() {
-      return url;
-   }
-   
-   public void setUrl(String url) {
-      this.url = url;
-   }
+    return url;
+ }
+
+ public void setUrl(String url) {
+    this.url = url;
+ }
 
 }

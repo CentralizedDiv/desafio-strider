@@ -48,18 +48,12 @@ public class TaskDaoImp implements TaskDao {
    public void update(long id, String imageRaw, Task task) {
       Session session = sessionFactory.getCurrentSession();
       Task task2 = session.byId(Task.class).load(id);
-      task2.setStatus(task.getStatus());
-      task2.setDescription(task.getDescription());
-      System.err.println(task2.getStatus());
-      byte[] data = Base64.getEncoder().encode(imageRaw.getBytes());
-      String url = "src/images/completeImage" + id + ".png";
-      try (OutputStream stream = new FileOutputStream(url)) {
-          stream.write(data);
-          stream.close();
-          task2.setUrl(url);
-      } catch (IOException e) {
-          System.err.println("Caught IOException: " + e.getMessage());
-      }
+      if(task.getStatus() != null)
+        task2.setStatus(task.getStatus());
+      if(task.getDescription() != null)
+        task2.setDescription(task.getDescription());
+      if(task.getUrl() != null)
+        task2.setUrl(task.getUrl());
       session.flush();
    }
 

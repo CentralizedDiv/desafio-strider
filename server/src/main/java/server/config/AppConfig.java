@@ -13,6 +13,8 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import static org.hibernate.cfg.Environment.*;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.MultipartResolver;
 
 @Configuration
 @PropertySource("classpath:db.properties")
@@ -59,4 +61,11 @@ public class AppConfig {
       transactionManager.setSessionFactory(getSessionFactory().getObject());
       return transactionManager;
    }
+
+   @Bean
+	public MultipartResolver multipartResolver()
+	{
+		// return new StandardServletMultipartResolver();
+		return new CommonsMultipartResolver();
+	}
 }
