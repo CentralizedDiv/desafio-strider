@@ -46,7 +46,12 @@ public class TaskDaoImp implements TaskDao {
    public void update(long id, Task task) {
       Session session = sessionFactory.getCurrentSession();
       Task task2 = session.byId(Task.class).load(id);
-      task2.setStatus(task.getStatus());
+      if(task.getStatus() != null)
+        task2.setStatus(task.getStatus());
+      if(task.getDescription() != null)
+        task2.setDescription(task.getDescription());
+      if(task.getUrl() != null)
+        task2.setUrl(task.getUrl());
       session.flush();
    }
 

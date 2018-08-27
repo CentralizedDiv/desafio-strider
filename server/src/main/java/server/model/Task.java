@@ -13,6 +13,7 @@ public class Task {
    private Long id;
    private String description;
    private String status;
+   private String url;
 
    public Long getId() {
       return id;
@@ -37,5 +38,13 @@ public class Task {
    public void setStatus(String status) {
       this.status = status;
    }
+
+   public String getUrl() {
+    return url;
+ }
+
+ public void setUrl(String url) {
+    this.url = url;
+ }
 
 }
