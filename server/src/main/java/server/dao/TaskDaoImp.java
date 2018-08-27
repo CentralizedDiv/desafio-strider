@@ -45,7 +45,7 @@ public class TaskDaoImp implements TaskDao {
    }
 
    @Override
-   public void update(long id, String imageRaw, Task task) {
+   public void update(long id,Task task) {
       Session session = sessionFactory.getCurrentSession();
       Task task2 = session.byId(Task.class).load(id);
       if(task.getStatus() != null)

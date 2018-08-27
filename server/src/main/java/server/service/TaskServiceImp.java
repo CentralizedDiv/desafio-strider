@@ -35,8 +35,8 @@ public class TaskServiceImp implements TaskService {
 
    @Transactional
    @Override
-   public void update(long id, String imageRaw, Task task) {
-       taskDao.update(id, imageRaw, task);
+   public void update(long id, Task task) {
+       taskDao.update(id, task);
    }
 
    @Transactional
