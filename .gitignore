@@ -1,0 +1,5 @@
+server/target/
+server/.vscode/
+server/.settings/
+server/.classpath
+spa/node_modules
