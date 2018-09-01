@@ -1,48 +1,33 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import {connect} from 'react-redux';
 import Task from './Task.js';
 import styles from '../styles/task.js';
 
 class TaskList extends React.Component {
-  tasks = [
-    {
-      label:'fazer x',
-      status: 'pending'
-    },
-    {
-      label:'fazer y',
-      status: 'pending'
-    },
-    {
-      label:'fazer z',
-      status: 'complete',
-      url:'../default.png'
-    }
-  ];
-  state = {
-    currentStatus: 'all',
-  };
   
-  returnTasks = (classes, status) => {
-    var buildedTasks = [];
-    this.tasks.forEach((task) => {
+  componentWillMount() {
+      this.props.fetchTasks();
+  }
+  
+  returnTasks = (status, tasks) => {
+    return tasks.map((task) => {
       if(task.status === status || status === 'all') {
-        buildedTasks.push(
+        return (
           <Task task={task}/>
-        )
+        );
       }
     });
-    return buildedTasks;
   } 
 
   render() {
-    const { classes, status } = this.props;
+    const { classes, status, tasks } = this.props;
     return (
       <div className={classes.root}>
-        {this.returnTasks(classes, status)}
+        {this.returnTasks(status, tasks.tasks)}
       </div>
     );
   }
 }
 
-export default withStyles(styles)(TaskList);
+export default connect(state => state)(withStyles(styles)(TaskList));

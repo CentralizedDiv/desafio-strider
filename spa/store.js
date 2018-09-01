@@ -1,11 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import messageReducer from './reducers/message'
-import thunk from 'redux-thunk'
+import tasks from './reducers/tasks'
+import promise from 'redux-promise'
 const reducer = combineReducers({
- messageReducer
+ tasks
 })
 const store = createStore(
  reducer,
- applyMiddleware(thunk)
+ applyMiddleware(promise)
 )
 export default store;

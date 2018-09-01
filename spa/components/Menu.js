@@ -4,7 +4,7 @@ import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import TaskList from './TaskList';
+import TaskListContainer from '../containers/TaskListContainer';
 
 const styles = () => ({
   root: {
@@ -48,9 +48,9 @@ class Menu extends React.Component {
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
         >
-          <TaskList status="all"></TaskList>          
-          <TaskList status="pending"></TaskList>
-          <TaskList status="complete"></TaskList>
+          <TaskListContainer status="all"></TaskListContainer>          
+          <TaskListContainer status="pending"></TaskListContainer>
+          <TaskListContainer status="complete"></TaskListContainer>
         </SwipeableViews>
       </div>
     );

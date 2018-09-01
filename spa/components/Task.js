@@ -15,7 +15,7 @@ class Task extends React.Component {
             <ExpansionPanel className={classes.task} expanded={task.status !== 'complete' ? false : undefined}>
                 <ExpansionPanelSummary className={task.status == 'complete' ? classes.complete : ''} expandIcon={task.status === 'complete' ? <ExpandMoreIcon /> : ''}>
                     <Delete className={classes.deleteIcon} fontSize='inherit'/>
-                    <Typography>{task.label}</Typography>
+                    <Typography>{task.description}</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <img className={classes.imageComplete} src={task.url}></img>
