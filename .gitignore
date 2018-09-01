@@ -3,3 +3,4 @@ server/.vscode/
 server/.settings/
 server/.classpath
 spa/node_modules
+spa/package-lock.json
