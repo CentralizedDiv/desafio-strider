@@ -1,11 +1,11 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import {createStore, combineReducers, applyMiddleware }from 'redux'
 import tasks from './reducers/tasks'
 import promise from 'redux-promise'
-const reducer = combineReducers({
+const reducer = combineReducers( {
  tasks
 })
 const store = createStore(
- reducer,
+ reducer, 
  applyMiddleware(promise)
 )
-export default store;
+export default store; 
