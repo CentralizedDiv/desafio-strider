@@ -59,6 +59,16 @@ public class TaskController {
     return ResponseEntity.ok().body(tasks);
   }
 
+  /*---get all tasks---*/
+  @GetMapping("/task/pending")
+  public ResponseEntity<List<Task>> listPending() throws IOException {
+    List<Task> tasks = taskService.listPending();
+    for (Task task : tasks) {
+      getBase64(task);
+    }
+    return ResponseEntity.ok().body(tasks);
+  }
+
   /*---Update a task by id---*/
   @PutMapping("/task/{id}")
   public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Task task) {
@@ -92,11 +102,16 @@ public class TaskController {
   }
 
   public void getBase64(Task task) throws IOException {
-    if (task.url != null) {
-      File image = Paths.get(task.getUrl()).toFile();
-      byte[] bytes = Files.readAllBytes(image.toPath());
-      task.url = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(bytes);
+    try{
+      if (task.url != null) {
+        File image = Paths.get(task.getUrl()).toFile();
+        byte[] bytes = Files.readAllBytes(image.toPath());
+        task.url = "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(bytes);
+      }
+    } catch(IOException e) {
+      task.url="";
     }
+    
   }
 
   public void deleteImage(String url) throws IOException {

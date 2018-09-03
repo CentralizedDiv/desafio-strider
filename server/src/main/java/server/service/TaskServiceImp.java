@@ -32,6 +32,11 @@ public class TaskServiceImp implements TaskService {
     return taskDao.list();
   }
 
+  @Override
+  public List<Task> listPending() {
+    return taskDao.listPending();
+  }
+
   @Transactional
   @Override
   public void update(long id, Task task) {

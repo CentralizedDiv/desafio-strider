@@ -8,8 +8,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import javax.persistence.criteria.*;
+import org.hibernate.*;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,6 +31,17 @@ public class TaskDaoImp implements TaskDao {
   @Override
   public Task get(long id) {
     return sessionFactory.getCurrentSession().get(Task.class, id);
+  }
+
+  @Override
+  public List<Task> listPending() {
+    Session session = sessionFactory.getCurrentSession();
+    CriteriaBuilder cb = session.getCriteriaBuilder();
+    CriteriaQuery<Task> cq = cb.createQuery(Task.class);
+    Root<Task> root = cq.from(Task.class);
+    cq.select(root).where(cb.equal(root.get("status"),"pending"));
+    Query<Task> query = session.createQuery(cq);
+    return query.getResultList();
   }
 
   @Override

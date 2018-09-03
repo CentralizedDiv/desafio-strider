@@ -12,6 +12,8 @@ public interface TaskService {
 
   List<Task> list();
 
+  List<Task> listPending();
+
   void update(long id, Task task);
 
   void delete(long id);
